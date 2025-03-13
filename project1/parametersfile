@@ -1,0 +1,41 @@
+pipeline{
+    agent{
+        //using agent machine call by label
+        label "ciserver"
+    }
+     options {
+        // Timeout counter starts AFTER agent is allocated
+        timeout(time: 60, unit: 'SECONDS')
+    }
+    // environment { 
+    //     CONTAINERIMAGE = "nginx"
+    // }
+    
+    parameters {
+        string(name: 'CONTAINERNAME', defaultValue: 'ciserver1', description: 'Define ontainer name ')
+
+        string(name: 'CONTAINERPORT', defaultValue: '8080', description: 'Define Container Expose port')
+
+        choice(name: 'CONTAINERIMAGE', choices: ['httpd', 'nginx', 'ubuntu'], description: 'Pick your container Image')
+    }
+
+    stages{
+        stage("PullImage"){
+            steps{
+                sh "docker pull ${params.CONTAINERIMAGE}"
+            }
+        }
+
+        stage("KillOldContainer"){
+            steps{
+            sh "docker rm -f ${params.CONTAINERNAME}"
+            }
+        }
+
+        stage("BildContainer"){
+            steps{
+                sh "docker run -dit --name ${params.CONTAINERNAME} -p ${params.CONTAINERPORT}:80 ${params.CONTAINERIMAGE}"
+            }
+        }
+    }
+}

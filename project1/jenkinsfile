@@ -1,0 +1,30 @@
+pipeline{
+    agent{
+        //using agent machine call by label
+        label "ciserver"
+    }
+     options {
+        // Timeout counter starts AFTER agent is allocated
+        timeout(time: 60, unit: 'SECONDS')
+    }
+
+    stages{
+        stage("PullImage"){
+            steps{
+                sh "docker pull httpd"
+            }
+        }
+
+        stage("KillOldContainer"){
+            steps{
+            sh "docker rm -f container1"
+            }
+        }
+        
+        stage("BildContainer"){
+            steps{
+                sh "docker run -dit --name container1 httpd"
+            }
+        }
+    }
+}
