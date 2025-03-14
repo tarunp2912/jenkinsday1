@@ -1,7 +1,7 @@
 pipeline{
     agent{
         //using agent machine call by label
-        label "ciserver"
+        label "phpdev"
     }
      options {
         // Timeout counter starts AFTER agent is allocated
@@ -9,21 +9,21 @@ pipeline{
     }
 
     stages{
-        stage("PullImage"){
+        stage("CodeCheckout"){
             steps{
-                sh "docker pull httpd"
+                git branch: 'phpdevelopment', url: 'https://github.com/tarunp2912/jenkinsday1.git'
             }
         }
 
-        stage("KillOldContainer"){
+        stage("PHPCodeDeploy"){
             steps{
-            sh "docker rm -f container1"
+            sh "copy -r /home/ec2-user/jenkins/phpdevlopment/src/* /var/www/html/"
             }
         }
         
-        stage("BildContainer"){
+        stage("RestartServer"){
             steps{
-                sh "docker run -dit --name container1 httpd"
+                sh "sudo systemctl restart httpd"
             }
         }
     }
