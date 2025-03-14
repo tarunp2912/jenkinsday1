@@ -17,7 +17,7 @@ pipeline{
 
         stage("PHPCodeDeploy"){
             steps{
-            sh "copy -r /home/ec2-user/jenkins/workspace/phpweb/src* /var/www/html/"
+            sh "cp -r /home/ec2-user/jenkins/workspace/phpweb/src* /var/www/html/"
             }
         }
         
