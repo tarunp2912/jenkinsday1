@@ -11,13 +11,13 @@ pipeline{
     stages{
         stage("CodeCheckout"){
             steps{
-                git branch: 'phpdevelopment', url: 'https://github.com/tarunp2912/jenkinsday1.git'
+                git branch: 'clothstore', url: 'https://github.com/tarunp2912/jenkinsday1.git'
             }
         }
 
         stage("PHPCodeDeploy"){
             steps{
-            sh "sudo cp -r /home/ec2-user/jenkins/workspace/phpweb/src/* /var/www/html/"
+            sh "sudo cp -r /home/ec2-user/jenkins/workspace/clothstore/src/clothstore/* /var/www/html/"
             }
         }
         
