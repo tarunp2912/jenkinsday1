@@ -17,7 +17,7 @@ pipeline{
 
         stage("PHPCodeDeploy"){
             steps{
-            sh "sudo cp -r /home/ec2-user/jenkins/workspace/clothstore/src/clothstore/* /var/www/html/"
+            sh "sudo cp -r /home/ec2-user/jenkins/workspace/clothstore/src/clothStore/* /var/www/html/"
             }
         }
         
