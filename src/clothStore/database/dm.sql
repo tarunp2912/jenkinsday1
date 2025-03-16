@@ -140,6 +140,7 @@ CREATE TABLE IF NOT EXISTS `tbl_login` (
 INSERT INTO `tbl_login` (`id`, `email`, `password`) VALUES
 (1, 'admin', 'admin'),
 (2, 'nesar', 'nesar');
+(3, 'tarun', 'redhat');
 
 -- --------------------------------------------------------
 
