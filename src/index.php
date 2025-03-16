@@ -21,9 +21,3 @@ value="male">Male
 <?php if (isset($gender) && $gender=="other") echo "checked";?>
 value="other">Other
 
-<?php
-echo "Today is " . date("Y/m/d") . "<br>";
-echo "Today is " . date("Y.m.d") . "<br>";
-echo "Today is " . date("Y-m-d") . "<br>";
-echo "Today is " . date("l");
-?>
